@@ -3,7 +3,6 @@ import Extro from "@/components/Home/Extro/Extro";
 import Faqs from "@/components/Home/Faqs/Faqs";
 import Hero from "@/components/Home/Hero/Hero";
 import Partners from "@/components/Home/Partners/Partners";
-import Review from "@/components/Home/Review/Review";
 import Services from "@/components/Home/Services/Services";
 import Skill from "@/components/Home/Skill/Skill";
 import Work from "@/components/Home/Work/Work";
@@ -28,7 +27,7 @@ export default function Home() {
       <Skill />
       <Work />
       <Partners />
-      <Review />
+      {/* <Review /> */}
       <Blog />
       <Faqs />
       <Extro />

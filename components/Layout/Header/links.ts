@@ -4,10 +4,10 @@ type Link = {
 };
 
 export const links: Link[] = [
-  { href: "/", title: "work" },
+  // { href: "/", title: "work" },
   { href: "/agency", title: "agency" },
-  { href: "/", title: "services" },
-  { href: "/", title: "blog" },
-  { href: "/", title: "culture" },
+  { href: "/services", title: "services" },
+  // { href: "/", title: "blog" },
+  // { href: "/", title: "culture" },
   { href: "/contact", title: "contact" },
 ];

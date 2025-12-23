@@ -1,8 +1,10 @@
 import Form from "@/components/Contact/Form/Form";
 import Hero from "@/components/Contact/Hero/Hero";
+import Information from "@/components/Contact/Information/Information";
+import Extro from "@/components/Home/Extro/Extro";
 import Head from "next/head";
 
-const AgencyPage = () => {
+const ContactPage = () => {
   return (
     <>
       <Head>
@@ -10,8 +12,10 @@ const AgencyPage = () => {
       </Head>
       <Hero />
       <Form />
+      <Information />
+      <Extro />
     </>
   );
 };
 
-export default AgencyPage;
+export default ContactPage;

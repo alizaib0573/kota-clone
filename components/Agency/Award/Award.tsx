@@ -1,6 +1,40 @@
+import Image from "next/image";
 import { Clutch, Google } from "../Common/Icons";
 
 const Award = () => {
+  const awards = [
+    {
+      platform: "Awwwards",
+      award: "Honourable Mention",
+      count: 12,
+      platfromImage: "/agency/awards/awwwards.svg",
+    },
+    {
+      platform: "Mindsparkle Mag",
+      award: "Site of the Day",
+      count: 2,
+      platfromImage: "/agency/awards/mindsparkle.svg",
+    },
+    {
+      platform: "CSS Design Awards",
+      award: "Special Kudos",
+      count: 3,
+      platfromImage: "/agency/awards/cssda.svg",
+    },
+    {
+      platform: "FWA",
+      award: "Site of the Day",
+      count: 1,
+      platfromImage: "/agency/awards/fwa.svg",
+    },
+    {
+      platform: "The Lovies",
+      award: "Best Web Design - Aesthetic",
+      count: 1,
+      platfromImage: "/agency/awards/The-lovies-4.webp",
+    },
+  ];
+
   return (
     <div className="bg-black text-white">
       <section className="mx-auto flex w-full max-w-[calc(1400px+15%)] flex-col gap-[0.75rem] px-[7.5%] py-[5vw] lg:grid lg:grid-cols-12 2xl:max-w-[1800px+15%]">
@@ -9,8 +43,8 @@ const Award = () => {
           <span>UFS</span>
         </h1>
         <div className="col-span-6 flex flex-col justify-end gap-4 lg:flex-row lg:items-center lg:gap-[2vw]">
-          <div className="flex items-center gap-4 rounded-2xl border border-white/20 px-5 py-9">
-            <div className="h-[30px] w-[90px]">
+          <div className="flex items-center justify-between gap-5 rounded-2xl border border-white/20 px-5 py-9">
+            <div className="w-1/2 lg:h-[30px] lg:w-[90px]">
               <Google />
             </div>
             <div className="flex w-fit gap-1">
@@ -20,7 +54,7 @@ const Award = () => {
                     key={index}
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 13.25 12.63"
-                    className="w-[13px]"
+                    className="w-[20px] lg:w-[13px]"
                   >
                     <path
                       fill="#ea4335"
@@ -31,9 +65,8 @@ const Award = () => {
               })}
             </div>
           </div>
-
-          <div className="flex items-center gap-4 rounded-2xl border border-white/20 px-5 py-9">
-            <div className="h-[30px] w-[90px]">
+          <div className="flex items-center justify-between gap-4 rounded-2xl border border-white/20 px-5 py-9">
+            <div className="w-1/2 lg:h-[30px] lg:w-[90px]">
               <Clutch />
             </div>
             <div className="flex w-fit gap-1">
@@ -43,7 +76,7 @@ const Award = () => {
                     key={index}
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 13.25 12.63"
-                    className="w-[13px]"
+                    className="w-[20px] lg:w-[13px]"
                   >
                     <path
                       fill="#ea4335"
@@ -54,6 +87,34 @@ const Award = () => {
               })}
             </div>
           </div>
+        </div>
+        <div className="col-span-12 mt-[4vw] flex flex-col">
+          {awards.map((elem, index) => {
+            return (
+              <div
+                key={index}
+                className="grid grid-cols-4 items-center border-b border-white/20 py-[30px] first:border-y lg:grid-cols-7"
+              >
+                <Image
+                  className="h-full w-fit max-w-[60px] object-contain lg:col-span-2 lg:max-w-none"
+                  src={elem.platfromImage}
+                  alt="platform-img"
+                  width={1366}
+                  height={689}
+                />
+                <div className="col-span-2">
+                  <p className="text-sm lg:text-xl">{elem.platform}</p>
+                  <p className="text-sm lg:text-xl">{elem.award}</p>
+                </div>
+                <p className="hidden lg:col-span-2 lg:block lg:text-xl">
+                  {elem.award}
+                </p>
+                <p className="justify-self-end text-3xl lg:text-4xl">
+                  x{elem.count}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </section>
     </div>
