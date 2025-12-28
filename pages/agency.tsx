@@ -19,7 +19,9 @@ const AgencyPage = () => {
       <Partners />
       <Award />
       <Team />
-      <Interested />
+      <div className="bg-black lg:pt-[5vw]">
+        <Interested />
+      </div>
     </>
   );
 };

@@ -1,9 +1,16 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
 import { team } from "./data";
 import Image from "next/image";
+import { Controller, EffectCreative } from "swiper/modules";
+import { useState } from "react";
+import SW from "swiper";
+import "swiper/css/effect-creative";
+import "swiper/css";
 
 const Team = () => {
+  const [topSwiper, setTopSwiper] = useState<SW | null>(null);
+  const [bottomSwiper, setBottomSwiper] = useState<SW | null>(null);
+
   return (
     <div className="bg-black">
       <div className="w-full text-white">
@@ -21,10 +28,66 @@ const Team = () => {
           </div>
         </section>
       </div>
-      <div className="block w-full">
+      <div className="relative block w-full">
+        <div className="absolute top-1/2 z-20 hidden h-fit w-full -translate-y-1/2 grid-cols-6 gap-2.5 lg:grid">
+          <div className="relative col-span-2 col-start-4">
+            <button
+              onClick={() => topSwiper?.slideNext()}
+              className="absolute top-1/2 -left-[90px] z-10 size-[80px] -translate-y-1/2 cursor-pointer"
+            >
+              <Arrow />
+            </button>
+            <button
+              onClick={() => topSwiper?.slidePrev()}
+              className="absolute top-1/2 -right-[90px] z-10 size-[80px] -translate-y-1/2 rotate-180 cursor-pointer"
+            >
+              <Arrow />
+            </button>
+            <div className="overflow-hidden rounded-tr-[5rem]">
+              <Swiper
+                onSwiper={setTopSwiper}
+                controller={{ control: bottomSwiper }}
+                effect={"creative"}
+                loop
+                creativeEffect={{
+                  prev: {
+                    translate: ["-100%", 0, 0],
+                  },
+                  next: {
+                    translate: [0, 0, 0],
+                  },
+                }}
+                modules={[EffectCreative, Controller]}
+                spaceBetween={10}
+                slidesPerView={1}
+              >
+                {team.map((elem, index) => (
+                  <SwiperSlide className="group" key={index}>
+                    <Image
+                      className="cursor-pointer object-cover transition-transform duration-500 group-hover:scale-110"
+                      src={elem.image}
+                      alt="team-member-img"
+                      width={1366}
+                      height={689}
+                    />
+                    <div className="absolute inset-0 flex h-full w-full flex-col justify-end bg-linear-to-b from-transparent from-70% to-black/80 px-8 py-5 text-white">
+                      <h1 className="relative text-8xl">{elem.name}</h1>
+                      <p className="relative text-xl">{elem.post}</p>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          </div>
+        </div>
         <Swiper
+          onSwiper={setBottomSwiper}
+          controller={{ control: topSwiper }}
+          modules={[Controller]}
           spaceBetween={35}
+          initialSlide={10}
           slidesPerView={1.3}
+          loop
           slidesOffsetBefore={28}
           slidesOffsetAfter={28}
           breakpoints={{
@@ -36,20 +99,21 @@ const Team = () => {
             },
           }}
         >
-          {team.map((elem, index) => {
-            return (
-              <SwiperSlide key={index}>
-                <Image
-                  className="rounded-tr-[5rem] object-cover"
-                  key={index}
-                  src={elem.image}
-                  alt="team-member-img"
-                  width={1366}
-                  height={689}
-                />
-              </SwiperSlide>
-            );
-          })}
+          {team.map((elem, index) => (
+            <SwiperSlide key={index}>
+              <Image
+                className="rounded-tr-[5rem] object-cover lg:brightness-50"
+                src={elem.image}
+                alt="team-member-img"
+                width={1366}
+                height={689}
+              />
+              <div className="absolute inset-0 flex h-full w-full flex-col justify-end bg-linear-to-b from-transparent from-70% to-black/80 px-5 py-3.5 text-white lg:hidden">
+                <h1 className="relative text-4xl">{elem.name}</h1>
+                <p className="relative text-xl">{elem.post}</p>
+              </div>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
     </div>
@@ -57,3 +121,15 @@ const Team = () => {
 };
 
 export default Team;
+
+const Arrow = () => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78.53 81.57">
+      <path fill="#fff" d="M5.66 36.63H78.53V44.63H5.66z"></path>
+      <path
+        fill="#fff"
+        d="M40.92 81.57L0 40.65 40.65 0 46.31 5.66 11.31 40.65 46.57 75.91 40.92 81.57z"
+      ></path>
+    </svg>
+  );
+};
