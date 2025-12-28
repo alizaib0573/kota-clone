@@ -1,22 +1,17 @@
 import { useState } from "react";
 
-const Navigator = () => {
-  const services = [
-    "Web design & development",
-    "Creative web design",
-    "Web development",
-    "E-Commerce",
-    "WordPress",
-    "Copywriting",
-  ];
+type Props = {
+  data: string[];
+};
 
+const Navigator: React.FC<Props> = ({ data }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <div className="col-span-12 hidden flex-col gap-2 lg:col-span-11 lg:flex">
       <p className="mb-2 text-lg text-[#7b7b7b]">Discover More</p>
       <div className="flex w-full flex-wrap gap-2">
-        {services.map((elem, index) => {
+        {data.map((elem, index) => {
           return (
             <p
               data-active={index === activeIndex}

@@ -11,6 +11,7 @@ const Header = () => {
 
   //states
   const [isMenuActive, setIsMenuActive] = useState<boolean>(false);
+  const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
 
   //animation
   const { contextSafe } = useGSAP(() => {}, { scope: container });
@@ -33,9 +34,11 @@ const Header = () => {
 
   const handleMenuDisable = contextSafe(() => {
     setIsMenuActive(false);
+    setIsSubMenuOpen(false);
 
     gsap
       .timeline({ defaults: { ease: "power4.out" } })
+      .to(".sub-menu", { maxHeight: 0 })
       .to(".menu-inside-btn", { scale: 0 })
       .to(".menu-links", { opacity: 0 }, "<")
       .set(".menu", { pointerEvents: "none" })
@@ -51,10 +54,20 @@ const Header = () => {
     else handleMenuEnable();
   };
 
+  const handleSubMenuToggle = contextSafe(() => {
+    setIsSubMenuOpen((prev) => !prev);
+
+    gsap.to(".sub-menu", {
+      maxHeight: isSubMenuOpen ? 0 : 1000,
+      duration: 0.5,
+      ease: "power4.inOut",
+    });
+  });
+
   return (
     <header
       ref={container}
-      className="fixed top-0 left-1/2 z-10 flex w-full max-w-[2450px] -translate-x-1/2 items-center justify-between p-6 lg:p-[26px]"
+      className="fixed top-0 left-1/2 z-40 flex w-full max-w-[2450px] -translate-x-1/2 items-center justify-between p-6 lg:p-[26px]"
     >
       <div className="flex items-center justify-center gap-4">
         <Link
@@ -85,18 +98,50 @@ const Header = () => {
         className="menu-cover pointer-events-none absolute inset-0 h-screen w-screen bg-black/20 opacity-0"
       ></div>
       <div className="menu pointer-events-none absolute top-[18px] right-[18px] z-10 flex min-w-[304px] origin-top-right scale-0 flex-col rounded-4xl bg-white px-[30px] pt-[60px] pb-[30px] opacity-0 lg:top-[22px]">
-        <div className="flex flex-col gap-2">
-          {links.map(({ href, title }, index) => {
-            return (
-              <Link
-                className="menu-links text-2xl text-black capitalize opacity-0"
-                href={href}
-                key={index}
-              >
-                {title}
-              </Link>
-            );
-          })}
+        <div className="flex flex-col">
+          <Link
+            onClick={handleMenuDisable}
+            className="menu-links mb-2 text-2xl text-black capitalize opacity-0"
+            href="/agency"
+          >
+            Agency
+          </Link>
+          <button
+            onClick={handleSubMenuToggle}
+            className="menu-links mb-2 cursor-pointer text-left text-2xl text-black capitalize opacity-0"
+          >
+            Services
+          </button>
+          <div className="sub-menu flex max-h-0 flex-col gap-0.5 overflow-hidden">
+            <Link
+              onClick={handleMenuDisable}
+              className="font-light"
+              href="/services/web-design-and-development"
+            >
+              Web design & development
+            </Link>
+            <Link
+              onClick={handleMenuDisable}
+              className="font-light"
+              href="/services/branding"
+            >
+              Branding
+            </Link>
+            <Link
+              onClick={handleMenuDisable}
+              className="mb-2 font-light"
+              href="/services/digital-marketing"
+            >
+              Digital Marketing
+            </Link>
+          </div>
+          <Link
+            onClick={handleMenuDisable}
+            className="menu-links text-2xl text-black capitalize opacity-0"
+            href="/contact"
+          >
+            Contact
+          </Link>
         </div>
         <button className="menu-inside-btn mt-7 flex scale-0 cursor-pointer items-center justify-center gap-4 rounded-full border-2 border-black px-5 py-3.5">
           Start your projects{" "}
