@@ -73,7 +73,7 @@ const Footer = () => {
               </div>
             </div>
             <div className="hidden items-center justify-center gap-5 lg:flex">
-              <p className="text-center text-lg text-white">&copy; KOTA 2025</p>
+              <p className="text-center text-lg text-white">&copy; AIROTICS 2025</p>
               <Image
                 src="/home/cyber-essentials.svg"
                 alt="icon"
@@ -100,7 +100,7 @@ const Footer = () => {
             Sign up to our newsletter{" "}
           </button>
           <div className="flex flex-col items-center justify-center gap-5 lg:hidden">
-            <p className="text-center text-lg text-white">&copy; KOTA 2025</p>
+            <p className="text-center text-lg text-white">&copy; AIROTICS 2025</p>
             <Image
               src="/home/cyber-essentials.svg"
               alt="icon"
