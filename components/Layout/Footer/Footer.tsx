@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="mb-6 flex items-center justify-between border-t border-white pt-10 lg:mb-12 lg:border-none lg:pt-20">
           <div className="h-[52px] w-[52px] border-4 border-white lg:h-[90px] lg:w-[90px] lg:border-8"></div>
           <p className="text-xl text-white lg:text-[6rem] lg:leading-none">
-            hello@kota.co.uk
+          airotics.ai@gmail.com
           </p>
         </div>
         <div className="flex flex-col gap-6">

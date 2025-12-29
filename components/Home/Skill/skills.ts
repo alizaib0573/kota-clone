@@ -8,23 +8,23 @@ export type Skill = {
 export const skills: Skill[] = [
   {
     id: "01",
-    title: "Beauty",
+    title: "Creativity",
     description:
-      "Developing stunning one-of-a-kind digital design that catches people’s eyes and brings your brand to life online.",
+      "Stunning, one-of-a-kind digital design that captures attention without compromising technical load times or security",
     imgUrl: "/home/skill/bento3.webp",
   },
   {
     id: "02",
-    title: "Thought",
+    title: "Verification",
     description:
-      "As a web design agency, we love to deliver meaningful and intuitive user experiences that build trust with your target audience.",
+      "Every solution is built on verifiable code and logic-driven standards. We deliver transparent, intuitive experiences that build irrefutable user confidence",
     imgUrl: "/home/skill/creative-web-design.webp",
   },
   {
     id: "03",
-    title: "Impact",
+    title: "Growth",
     description:
-      "Designing tailor made solutions that resonate with your customers and drives them to act.",
+      "Solutions built to drive specific metrics and conversions, giving you a measurable, logic-driven advantage over the competition.",
     imgUrl: "/home/skill/back-end.webp",
   },
 ];
